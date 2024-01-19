@@ -1,0 +1,5 @@
+npm i cors dotenv express joi jsonwebtoken mongoose morgan multer nodemailer  
+npm i --save-dev @types/cors @types/dotenv @types/express @types/jsonwebtoken @types/morgan @types/multer @types/node nodemon typescript
+
+yarn add cors dotenv express joi jsonwebtoken mongoose morgan multer nodemailer 
+yarn add -D @types/cors @types/dotenv @types/express @types/jsonwebtoken @types/morgan @types/multer @types/node nodemon typescript
