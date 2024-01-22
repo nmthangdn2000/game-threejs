@@ -17,13 +17,17 @@ export const PeerManager = () => {
       port: appConfig.PEER_PORT,
       secure: appConfig.PEER_PORT === 443,
       path: '/peerjs/myapp',
+      config: {
+        iceServers: [
+          {
+            urls: 'stun:stun1.l.google.com:19302',
+          },
+          {
+            urls: 'stun:stun2.l.google.com:19302',
+          },
+        ],
+      },
     });
-
-    // const peer = new Peer({
-    //   host: 'localhost',
-    //   port: 3000,
-    //   path: '/peerjs/myapp',
-    // });
 
     peerInstance.current = peer;
 
