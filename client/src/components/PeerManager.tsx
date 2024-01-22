@@ -15,7 +15,7 @@ export const PeerManager = () => {
     const peer = new Peer({
       host: appConfig.PEER_HOST,
       port: appConfig.PEER_PORT,
-      // secure: appConfig.PEER_PORT === 443,
+      secure: appConfig.PEER_PORT === 443,
       path: '/peerjs/myapp',
     });
 
