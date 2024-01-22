@@ -56,6 +56,12 @@
       "@environments/*": [
         "environments/*"
       ],
+      "@hooks": [
+        "hooks"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
     }
   },
   "include": ["src"],

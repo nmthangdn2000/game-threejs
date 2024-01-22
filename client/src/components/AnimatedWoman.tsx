@@ -40,7 +40,7 @@ export function AnimatedWoman({ bottomColor = 'green', hairColor = 'pink', topCo
     if (group.current === undefined) return;
 
     if (group.current.position.distanceTo(props.position) > 0.1) {
-      const direction = group.current.position.clone().sub(props.position).normalize().multiplyScalar(0.032);
+      const direction = group.current.position.clone().sub(props.position).normalize().multiplyScalar(0.05);
       group.current.position.sub(direction);
       group.current.lookAt(props.position);
       setAnimation('CharacterArmature|Run');

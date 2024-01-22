@@ -1,11 +1,12 @@
 import { Experience } from '@pages/home/components/Experience';
 import { Canvas } from '@react-three/fiber';
 
-import './home-page.css';
-import { SocketManager } from '@components/SocketManager';
-import { useState } from 'react';
-import { Form } from '@pages/home/components/Form';
 import { PeerManager } from '@components/PeerManager';
+import { SocketManager } from '@components/SocketManager';
+import { Chat } from '@pages/home/components/Chat';
+import { Form } from '@pages/home/components/Form';
+import { useState } from 'react';
+import './home-page.css';
 
 export const HomePage = () => {
   const [connected, setConnected] = useState<boolean>(false);
@@ -26,6 +27,7 @@ export const HomePage = () => {
 
             <Experience />
           </Canvas>
+          <Chat />
         </>
       ) : (
         <Form setConnected={setConnected} />

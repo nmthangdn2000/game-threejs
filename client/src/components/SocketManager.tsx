@@ -19,7 +19,7 @@ export const SocketManager = () => {
 
   useEffect(() => {
     socket.on('connect', () => {
-      console.log('connected');
+      console.log('socket connected');
     });
 
     socket.on('disconnect', () => {

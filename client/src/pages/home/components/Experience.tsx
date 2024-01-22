@@ -1,7 +1,8 @@
 import { AnimatedWoman } from '@components/AnimatedWoman';
 import { socket } from '@components/SocketManager';
 import { SocketEvent } from '@constants/socket.emit';
-import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
+import { Chat } from '@pages/home/components/Chat';
+import { ContactShadows, Environment, MapControls, PerspectiveCamera } from '@react-three/drei';
 import { ThreeEvent } from '@react-three/fiber';
 import { CharacterType, selectCharacters, selectMyCharacter, setCharacterMove } from '@store/features/character.slice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
@@ -26,7 +27,15 @@ export const Experience = () => {
   return (
     <>
       <Environment preset="sunset" />
-      <OrbitControls />
+      <PerspectiveCamera
+        fov={45}
+        aspect={window.innerWidth / window.innerHeight}
+        near={0.1}
+        far={1000}
+        makeDefault={true}
+        position={[0, 5, 10]}
+      />
+      <MapControls enableDamping={true} dampingFactor={0.2} enablePan={true} enableZoom={true} maxPolarAngle={Math.PI / 2 - 0.1} />
       <ContactShadows blur={2} />
       <mesh rotation-x={-Math.PI / 2} position-y={-0.001} onClick={moveCharacter}>
         <planeGeometry args={[10, 10]} />
