@@ -49,6 +49,12 @@
       ],
       "@constants/*": [
         "constants/*"
+      ], 
+      "@environments": [
+        "environments"
+      ],
+      "@environments/*": [
+        "environments/*"
       ],
     }
   },

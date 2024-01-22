@@ -1,3 +1,4 @@
+import { appConfig } from '@environments/env';
 import { selectCharacters, selectMyCharacter, setConnectPeer, setPeerId } from '@store/features/character.slice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { Peer } from 'peerjs';
@@ -12,9 +13,9 @@ export const PeerManager = () => {
 
   useEffect(() => {
     const peer = new Peer({
-      host: '8055-118-71-70-148.ngrok-free.app',
-      port: 443,
-      secure: true,
+      host: appConfig.PEER_HOST,
+      port: appConfig.PEER_PORT,
+      secure: appConfig.PEER_PORT === 443,
       path: '/peerjs/myapp',
     });
 

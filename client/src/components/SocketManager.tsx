@@ -1,4 +1,5 @@
 import { SocketEvent } from '@constants/socket.emit';
+import { appConfig } from '@environments/env';
 import {
   CharacterType,
   setCharacterJoin,
@@ -11,7 +12,7 @@ import { useAppDispatch } from '@store/hooks';
 import { useEffect } from 'react';
 import { io } from 'socket.io-client';
 
-export const socket = io('https://8055-118-71-70-148.ngrok-free.app');
+export const socket = io(appConfig.SOCKET_URL);
 
 export const SocketManager = () => {
   const dispatch = useAppDispatch();
