@@ -6,3 +6,5 @@ export const appConfig = {
   PEER_HOST: ENV.VITE_PEER_HOST,
   PEER_PORT: ENV.VITE_PEER_PORT,
 };
+
+console.log('appConfig', appConfig);

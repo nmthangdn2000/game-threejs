@@ -13,6 +13,8 @@ export const socketIo = (server: HttpServer, origins: string[] | '*') => {
     },
   });
 
+  console.log('socket.io server started');
+
   io.on('connection', (socket) => {
     socket.on('disconnect', () => {
       characters.delete(socket.id);
