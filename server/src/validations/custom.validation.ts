@@ -5,9 +5,9 @@ interface ExtendedStringSchema extends Joi.StringSchema {
   objectId(): this;
 }
 
-interface ExtendedJoi extends Joi.Root {
+type ExtendedJoi = {
   string(): ExtendedStringSchema;
-}
+} & Joi.Root;
 
 const stringObjectExtension: Joi.Extension = {
   type: 'string',
