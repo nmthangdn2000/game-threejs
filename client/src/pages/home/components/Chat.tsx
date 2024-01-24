@@ -3,6 +3,7 @@ import { SocketEvent } from '@constants/socket.emit';
 import { selectMyCharacter } from '@store/features/character.slice';
 import { useAppSelector } from '@store/hooks';
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 export type ChatMessageType = {
   socketId: string;
@@ -69,15 +70,18 @@ export const Chat = () => {
 
   return (
     <>
-      <div className="fixed bg-slate-950/5 w-[300px] h-[400px] left-0 top-0 shadow-sm ">
+      <div className="fixed bg-slate-950/5 w-[300px] h-[400px] left-0 top-0 shadow-sm">
         <div className="flex flex-col gap-2 justify-end h-full overflow-y-auto p-2">
-          {messages.map((m, index) => (
-            <div className="gap-2" key={index}>
-              <span className="text-gray-700 text-xs mr-1">{m.timestamp}</span>
-              <span className="text-gray-700 text-sm font-bold mr-2">{m.name}:</span>
-              <span className="text-gray-700 text-sm ">{m.message}</span>
-            </div>
-          ))}
+          {messages.map((m, index) => {
+            const textColor = m.socketId === myCharacter?.socketId ? 'text-blue-500' : 'text-gray-700';
+            return (
+              <div className="gap-2" key={index}>
+                <span className={classNames('text-xs mr-1', textColor)}>{m.timestamp}</span>
+                <span className={classNames('text-sm font-bold mr-2', textColor)}>{m.name}:</span>
+                <span className={classNames('text-sm', textColor)}>{m.message}</span>
+              </div>
+            );
+          })}
         </div>
         <div
           className={
