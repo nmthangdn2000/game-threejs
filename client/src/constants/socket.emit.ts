@@ -7,4 +7,5 @@ export enum SocketEvent {
   LIST_CHARACTER_JOINED = 'listCharacterJoined',
   NEW_CHARACTER_JOINED = 'newCharacterJoined',
   CHAT_MESSAGE = 'chatMessage',
+  CHAT_MESSAGE_RECEIVED = 'chatMessageReceived',
 }

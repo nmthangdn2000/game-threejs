@@ -1,7 +1,6 @@
 import { AnimatedWoman } from '@components/AnimatedWoman';
 import { socket } from '@components/SocketManager';
 import { SocketEvent } from '@constants/socket.emit';
-import { Chat } from '@pages/home/components/Chat';
 import { ContactShadows, Environment, MapControls, PerspectiveCamera } from '@react-three/drei';
 import { ThreeEvent } from '@react-three/fiber';
 import { CharacterType, selectCharacters, selectMyCharacter, setCharacterMove } from '@store/features/character.slice';

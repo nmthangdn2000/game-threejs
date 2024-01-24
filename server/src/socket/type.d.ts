@@ -13,3 +13,10 @@ export type PlayerInfoType = {
   name: string;
   peerId: string;
 };
+
+export type ChatMessageType = {
+  socketId: string;
+  name: string;
+  message: string;
+  timestamp: string;
+};

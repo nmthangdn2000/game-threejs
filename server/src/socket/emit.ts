@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io';
 import { characters } from './socket';
-import { CharacterType, PlayerInfoType } from './type';
+import { CharacterType, ChatMessageType, PlayerInfoType } from './type';
 import { SocketEvent } from './emit.enum';
 
 const randomPosition = () => [Math.random() * 3, 0, Math.random() * 3] as [number, number, number];
@@ -43,5 +43,10 @@ export const socketEmitters = (socket: Socket, io: Server) => {
     characters.set(socket.id, character);
 
     socket.broadcast.emit(SocketEvent.CHARACTER_MOVED, character);
+  });
+
+  // chat
+  socket.on(SocketEvent.CHAT_MESSAGE, (data: ChatMessageType) => {
+    socket.broadcast.emit(SocketEvent.CHAT_MESSAGE_RECEIVED, data);
   });
 };

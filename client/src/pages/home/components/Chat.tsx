@@ -4,9 +4,16 @@ import { selectMyCharacter } from '@store/features/character.slice';
 import { useAppSelector } from '@store/hooks';
 import { useEffect, useState } from 'react';
 
+export type ChatMessageType = {
+  socketId: string;
+  name: string;
+  message: string;
+  timestamp: string;
+};
+
 export const Chat = () => {
   const myCharacter = useAppSelector(selectMyCharacter);
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<ChatMessageType[]>([]);
 
   const [message, setMessage] = useState<string>('');
   const [showInputChat, setShowInputChat] = useState<boolean>(false);
@@ -16,6 +23,7 @@ export const Chat = () => {
       socketId: myCharacter?.socketId,
       name: myCharacter?.name,
       message,
+      timestamp: new Date().toLocaleTimeString(),
     });
   };
 
@@ -27,6 +35,15 @@ export const Chat = () => {
         if (message.length > 0) {
           sendMessage(message);
           setMessage('');
+          setMessages((prev) => [
+            ...prev,
+            {
+              socketId: myCharacter!.socketId,
+              name: myCharacter!.name,
+              message,
+              timestamp: new Date().toLocaleTimeString(),
+            },
+          ]);
         }
 
         setShowInputChat(!showInputChat);
@@ -41,12 +58,12 @@ export const Chat = () => {
   }, [message, showInputChat]);
 
   useEffect(() => {
-    socket.on(SocketEvent.CHAT_MESSAGE, (message: string) => {
-      console.log('message', message);
+    socket.on(SocketEvent.CHAT_MESSAGE_RECEIVED, (data: ChatMessageType) => {
+      setMessages((prev) => [...prev, data]);
     });
 
     return () => {
-      socket.off(SocketEvent.CHAT_MESSAGE);
+      socket.off(SocketEvent.CHAT_MESSAGE_RECEIVED);
     };
   }, []);
 
@@ -54,10 +71,13 @@ export const Chat = () => {
     <>
       <div className="fixed bg-slate-950/5 w-[300px] h-[400px] left-0 top-0 shadow-sm ">
         <div className="flex flex-col gap-2 justify-end h-full overflow-y-auto p-2">
-          <div className="flex gap-2">
-            <span className="text-gray-700 text-sm font-bold">Name:</span>
-            <span className="text-gray-700 text-sm ">hello baby</span>
-          </div>
+          {messages.map((m, index) => (
+            <div className="gap-2" key={index}>
+              <span className="text-gray-700 text-xs mr-1">{m.timestamp}</span>
+              <span className="text-gray-700 text-sm font-bold mr-2">{m.name}:</span>
+              <span className="text-gray-700 text-sm ">{m.message}</span>
+            </div>
+          ))}
         </div>
         <div
           className={
